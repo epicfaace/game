@@ -1,4 +1,21 @@
-GAME!!!
-222
-4446
-777
+<!DOCTYPE html>
+<html>
+<head>
+<title>Game</title>
+<script>
+function init()
+{
+	c=document.createElement("canvas");
+	c.width=640;
+	c.height=480;
+	c.textContent="Your browser does not support canvas. Stop using IE and upgrade!";
+	document.body.appendChild(c);
+	ctx=c.getContext("2d");
+	ctx.rect(0,0,c.width,c.height);
+	ctx.stroke();
+}
+</script>
+</head>
+<body onload="init()">
+</body>
+</html>
