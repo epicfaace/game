@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Game</title>
+<script>
+function init()
+{
+	c=document.createElement("canvas");
+	c.width=640;
+	c.height=480;
+	c.textContent="Your browser does not support canvas. Stop using IE and upgrade!";
+	c.style.border="1px solid black";
+	document.body.appendChild(c);
+	ctx=c.getContext("2d");
+	xvel=0;
+	yvel=0;
+	speed=10;
+	xpos=c.width/2;
+	ypos=c.height-50;
+	setInterval(tick,10);
+}
+function tick()
+{
+	c.width=c.width;
+	xvel*=.9;
+	yvel*=.9;
+	xpos+=xvel;
+	ypos+=yvel;
+	drawGuy(xpos,ypos);
+}
+function drawGuy(xp,yp)
+{
+	ctx.beginPath();
+	ctx.arc(xp,yp-10,10,0,Math.PI*2);
+	ctx.closePath();
+	ctx.stroke();
+	ctx.beginPath();
+	ctx.moveTo(xp,yp+8);
+	ctx.lineTo(xp-10,yp+10);
+	ctx.moveTo(xp,yp+8);
+	ctx.lineTo(xp+10,yp+10);
+	ctx.moveTo(xp,yp);
+	ctx.lineTo(xp,yp+20);
+	ctx.lineTo(xp-10,yp+30);
+	ctx.moveTo(xp,yp+20);
+	ctx.lineTo(xp+10,yp+30);
+	ctx.closePath();
+	ctx.stroke();
+}
+window.onkeydown=function(e)
+{
+	//87 65 83 68 = wasd
+	//38 37 40 39 = udlr
+	switch (e.keyCode) {
+		case 87://w
+			yvel-=speed;
+			break;
+		case 65://a
+			xvel-=speed;
+			break;
+		case 83://s
+			yvel+=speed;
+			break;
+		case 68://d
+			xvel+=speed;
+			break;
+	}
+}
+</script>
+</head>
+<body onload="init()">
+</body>
+</html>
