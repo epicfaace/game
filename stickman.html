@@ -17,6 +17,8 @@ function init()
 	speed=10;
 	xpos=c.width/2;
 	ypos=c.height-50;
+	scrollx=0;
+	scrolly=0;
 	setInterval(tick,10);
 }
 function tick()
@@ -24,9 +26,10 @@ function tick()
 	c.width=c.width;
 	xvel*=.9;
 	yvel*=.9;
-	xpos+=xvel;
-	ypos+=yvel;
+	scrollx-=xvel;
+	scrolly-=yvel;
 	drawGuy(xpos,ypos);
+	drawTer();
 }
 function drawGuy(xp,yp)
 {
@@ -46,6 +49,18 @@ function drawGuy(xp,yp)
 	ctx.lineTo(xp+10,yp+30);
 	ctx.closePath();
 	ctx.stroke();
+}
+function drawTer()
+{
+	
+	for (x=-5;x<=5;x++)
+	{
+		ctx.beginPath();
+			ctx.rect(scrollx+c.width*x,c.height-50,c.width,50);
+				ctx.closePath();
+		ctx.stroke();
+	}
+
 }
 window.onkeydown=function(e)
 {
